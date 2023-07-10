@@ -11,11 +11,11 @@ function validateEmail(email) {
   return atPos > 0 && dotPos > atPos + 1 && dotPos < email.length - 1;
 }
 
-firstNameInput.onkeyup = () => {
-  if (firstNameInput.value === "") {
-    firstNameInput.classList.remove("is-valid");
+firstnameInput.onkeyup = () => {
+  if (firstnameInput.value === "") {
+    firstnameInput.classList.remove("is-valid");
   } else {
-    firstNameInput.classList.remove("is-invalid");
+    firstnameInput.classList.remove("is-invalid");
   }
 };
 
@@ -43,39 +43,44 @@ passwordInput.onkeyup = () => {
 };
 
 submitBtn.onclick = () => {
-  let isFirstNameOk = false;
-  let isLastNameOk = false;
-  let isPasswordOk = false;
-  let isEmailOk = false;
-
-  if (firstNameInput.value === "") {
-    firstNameInput.classList.add("is-invalid");
+  let isLastNameOk = !1;
+  let isPasswordOk = !1;
+  let isEmailOk = !1;
+  let isFirstNameOk = !1;
+  if (firstnameInput.value === "") {
+    firstnameInput.classList.add("is-invalid");
+    isFirstNameOk = !1;
   } else {
-    firstNameInput.classList.add("is-valid");
-    isFirstNameOk = true;
+    firstnameInput.classList.add("is-valid");
+    isFirstNameOk = !0;
   }
   if (lastnameInput.value === "") {
     lastnameInput.classList.add("is-invalid");
+    isLastNameOk = !1;
   } else {
     lastnameInput.classList.add("is-valid");
-    isLastNameOk = true;
+    isLastNameOk = !0;
   }
-  if (validateEmail(emailInput.value === true)) {
+  if (validateEmail(emailInput.value) === !0) {
     emailInput.classList.add("is-valid");
+    isEmailOk = !0;
   } else {
     emailInput.classList.add("is-invalid");
-    isEmailOk = true;
+    isEmailOk = !1;
   }
   if (passwordInput.value.length >= 6) {
     passwordInput.classList.add("is-valid");
+    isPasswordOk = !0;
   } else {
     passwordInput.classList.add("is-invalid");
-    isPasswordOk = true;
+    isPasswordOk = !1;
   }
 
-  isFirstNameOk &&
-    isLastNameOk &&
-    isEmailOk &&
-    isPasswordOk &&
+  if (
+    isFirstNameOk === true &&
+    isLastNameOk === true &&
+    isEmailOk === true &&
+    isPasswordOk === true
+  )
     alert("Register Successfully");
 };
